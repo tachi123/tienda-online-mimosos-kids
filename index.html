@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mimosos Kids — Tienda Online</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <meta name="description" content="Mimosos Kids · Ropa cómoda y con estilo para los más pequeños. Tienda online desde Marcos Paz, Buenos Aires.">
+    <meta name="theme-color" content="#1a1a2e">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 50:'#faf9f7', 100:'#f3f1ed', 200:'#e8e4dd', 300:'#d5cfc5', 400:'#b8ad9e', 500:'#9a8b78', 600:'#7d6e5c', 700:'#5e5245', 800:'#3d352d', 900:'#1e1b18' },
+                        accent: { DEFAULT:'#b07d62', light:'#d4a98a', dark:'#8c5e44' },
+                        cream: '#fdfcfa',
+                        warm: { DEFAULT:'#c8956e', light:'#e8c9a8' },
+                        dark: '#1a1a2e',
+                        rose: { DEFAULT:'#d4a0a0', light:'#f0dede' },
+                        sage: { DEFAULT:'#a3b18a', light:'#dde5d4' }
+                    },
+                    fontFamily: {
+                        sans: ['Inter','system-ui','sans-serif'],
+                        display: ['Playfair Display','Georgia','serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        html { scroll-behavior: smooth; }
+        .fade-enter { opacity:0; }
+        .fade-enter-active { opacity:1; transition:opacity .25s ease; }
+        .slide-enter { transform:translateX(100%); }
+        .slide-enter-active { transform:translateX(0); transition:transform .3s ease; }
+        .slide-leave-active { transform:translateX(100%); transition:transform .3s ease; }
+        #cart-panel-body::-webkit-scrollbar { width:4px; }
+        #cart-panel-body::-webkit-scrollbar-thumb { background:#d5cfc5; border-radius:4px; }
+        @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+        .animate-fade-up { animation: fadeUp .5s ease both; }
+        @keyframes shimmer { 0% { background-position:-200% 0; } 100% { background-position:200% 0; } }
+        .shimmer-line { background:linear-gradient(90deg,#f3f1ed 25%,#e8e4dd 50%,#f3f1ed 75%); background-size:200% 100%; animation:shimmer 1.5s infinite; }
+        @keyframes scaleIn { from { opacity:0; transform:scale(.95); } to { opacity:1; transform:scale(1); } }
+        .animate-scale-in { animation: scaleIn .3s ease both; }
+        .glass { background:rgba(255,255,255,.7); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); }
+        .text-gradient { background:linear-gradient(135deg,#1e1b18 0%,#b07d62 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    </style>
+</head>
+<body class="bg-cream font-sans text-brand-800 antialiased">
+
+    <!-- ============================= -->
+    <!-- NAVBAR                         -->
+    <!-- ============================= -->
+    <nav class="glass shadow-sm sticky top-0 z-50 border-b border-brand-200/50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 py-2.5">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="relative">
+                    <img src="logo.png" alt="Mimosos Kids" class="h-11 sm:h-14 w-auto rounded-xl shadow-sm group-hover:shadow-md transition-shadow">
+                </div>
+            </a>
+            <div class="flex items-center gap-2 sm:gap-4">
+                <a href="#nosotras" class="hidden sm:inline text-sm text-brand-500 hover:text-brand-900 font-medium transition">Nosotras</a>
+                <a href="#faq" class="hidden sm:inline text-sm text-brand-500 hover:text-brand-900 font-medium transition">FAQ</a>
+                <button id="btn-open-cart" aria-label="Abrir carrito"
+                    class="relative bg-brand-900 text-white px-4 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2 hover:bg-brand-800 active:scale-95 transition-all shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                </svg>
+                <span class="hidden sm:inline">Carrito</span>
+                <span id="cart-count" class="bg-warm text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">0</span>
+            </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================= -->
+    <!-- HERO / BANNER + BUSCADOR      -->
+    <!-- ============================= -->
+    <header class="relative overflow-hidden">
+        <!-- Fondo hero con gradiente multitono -->
+        <div class="absolute inset-0 bg-gradient-to-br from-brand-900 via-brand-800 to-accent-dark"></div>
+        <!-- Patrón decorativo -->
+        <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(circle at 1px 1px, rgba(255,255,255,.15) 1px, transparent 0);background-size:40px 40px;"></div>
+        <!-- Formas decorativas -->
+        <div class="absolute top-0 right-0 w-80 h-80 bg-warm/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-rose/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3"></div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24 text-center">
+            <span class="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-white/90 text-xs sm:text-sm font-medium rounded-full mb-6 border border-white/10">
+                ✨ Nueva colección Otoño-Invierno 2026
+            </span>
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-display font-bold text-white leading-[1.1] tracking-tight">
+                Moda que <span class="italic text-warm-light">abraza</span><br class="hidden sm:block">
+                a los más pequeños
+            </h1>
+            <p class="text-white/70 mt-4 sm:mt-6 text-base sm:text-lg max-w-lg mx-auto font-light">Ropa cómoda, única y con estilo. Desde Marcos Paz para todo el país.</p>
+            <!-- BUSCADOR -->
+            <div class="relative mt-8 max-w-lg mx-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-brand-400 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+                <input id="buscador" type="search" placeholder="Buscar por nombre, categoría, talle…"
+                    class="w-full pl-12 pr-10 py-3.5 rounded-2xl bg-white/95 backdrop-blur-sm border-0 text-sm text-brand-900 placeholder-brand-400 focus:outline-none focus:ring-2 focus:ring-warm/50 transition shadow-lg"
+                    autocomplete="off">
+                <button id="buscador-clear" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-brand-300 hover:text-brand-600 transition hidden" aria-label="Limpiar búsqueda">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================= -->
+    <!-- FILTROS + CONTADOR             -->
+    <!-- ============================= -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 mt-8">
+        <div class="flex items-center justify-between mb-1">
+            <h2 class="text-lg sm:text-xl font-display font-semibold text-brand-900">Catálogo</h2>
+            <p id="resultado-count" class="text-xs text-brand-400 hidden"></p>
+        </div>
+        <div class="flex flex-wrap gap-2 items-center mt-3" id="filtros-section">
+            <button class="filter-btn active-filter px-4 py-1.5 rounded-full text-sm font-medium border transition-all" data-filter="todos">Todos</button>
+        </div>
+    </section>
+
+    <!-- ============================= -->
+    <!-- CATÁLOGO / GRILLA             -->
+    <!-- ============================= -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+        <!-- Loader -->
+        <div id="loader" class="flex flex-col items-center justify-center py-20 gap-4">
+            <div class="w-10 h-10 border-3 border-brand-200 border-t-warm rounded-full animate-spin"></div>
+            <p class="text-brand-400 text-sm">Cargando productos…</p>
+        </div>
+
+        <!-- Error state -->
+        <div id="error-msg" class="hidden text-center py-20">
+            <p class="text-red-400 text-lg">⚠️ No pudimos cargar los productos.</p>
+            <button onclick="cargarProductos()" class="mt-3 text-sm underline text-accent-dark hover:text-accent">Reintentar</button>
+        </div>
+
+        <!-- Grid de productos -->
+        <div id="productos-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5 hidden"></div>
+
+        <!-- Botón "Mostrar más" para paginación -->
+        <div id="load-more-wrap" class="text-center py-6 hidden">
+            <button id="btn-load-more" class="bg-white border border-brand-200 text-brand-700 px-8 py-2.5 rounded-xl text-sm font-medium hover:bg-brand-100 hover:border-brand-300 active:scale-95 transition-all shadow-sm">
+                Mostrar más productos
+            </button>
+            <p id="load-more-count" class="text-xs text-brand-400 mt-2"></p>
+        </div>
+    </main>
+
+    <!-- ============================= -->
+    <!-- MODAL DETALLE DE PRODUCTO     -->
+    <!-- ============================= -->
+    <div id="modal-detalle" class="fixed inset-0 z-[60] hidden" role="dialog" aria-modal="true">
+        <!-- Fondo oscuro -->
+        <div id="modal-overlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+        <!-- Contenido -->
+        <div class="relative flex items-end sm:items-center justify-center min-h-full p-0 sm:p-4">
+            <div id="modal-content" class="relative bg-white w-full sm:max-w-lg sm:rounded-3xl rounded-t-3xl overflow-hidden shadow-2xl max-h-[92vh] flex flex-col animate-scale-in">
+                <!-- Cerrar -->
+                <button id="modal-close" aria-label="Cerrar" class="absolute top-3 right-3 z-10 bg-white/80 backdrop-blur rounded-full p-1.5 shadow hover:bg-white transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+                <!-- Imagen grande -->
+                <div class="w-full aspect-[4/5] bg-brand-100 overflow-hidden flex-shrink-0">
+                    <img id="modal-img" src="" alt="" class="w-full h-full object-cover">
+                </div>
+                <!-- Info -->
+                <div class="p-6 overflow-y-auto flex-1">
+                    <span id="modal-seccion" class="inline-block px-2.5 py-0.5 bg-warm-light/50 text-accent-dark text-xs font-semibold uppercase tracking-wider rounded-md"></span>
+                    <h3 id="modal-nombre" class="text-2xl font-display font-bold text-brand-900 mt-2"></h3>
+                    <p id="modal-talle" class="text-sm text-brand-400 mt-1"></p>
+                    <p id="modal-desc" class="text-sm text-brand-600 mt-3 leading-relaxed"></p>
+                    <div class="mt-6 flex items-center justify-between gap-4">
+                        <span id="modal-precio" class="text-3xl font-display font-bold text-brand-900"></span>
+                        <button id="modal-add-cart" class="bg-brand-900 text-white px-6 py-3 rounded-xl font-semibold text-sm hover:bg-brand-800 active:scale-95 transition-all flex items-center gap-2 shadow-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                            </svg>
+                            Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================= -->
+    <!-- PANEL LATERAL DEL CARRITO     -->
+    <!-- ============================= -->
+    <div id="cart-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[70] hidden"></div>
+    <aside id="cart-panel" class="fixed top-0 right-0 h-full w-full sm:w-[420px] bg-white shadow-2xl z-[80] translate-x-full transition-transform duration-300 flex flex-col">
+        <!-- Header -->
+        <div class="flex items-center justify-between px-5 py-4 border-b border-brand-100">
+            <h2 class="text-lg font-display font-bold text-brand-900">Tu carrito</h2>
+            <button id="btn-close-cart" aria-label="Cerrar carrito" class="p-1.5 rounded-full hover:bg-brand-100 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+        <!-- Body (scroll) -->
+        <div id="cart-panel-body" class="flex-1 overflow-y-auto px-5 py-4">
+            <!-- Carrito vacío -->
+            <div id="cart-empty" class="flex flex-col items-center justify-center h-full text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-brand-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"/>
+                </svg>
+                <p class="text-brand-400 mt-3 text-sm">Tu carrito está vacío</p>
+            </div>
+            <!-- Items se renderizan aquí -->
+            <div id="cart-items" class="space-y-4 hidden"></div>
+        </div>
+        <!-- Footer: total + botión WhatsApp -->
+        <div id="cart-footer" class="border-t border-brand-100 px-5 py-4 hidden">
+            <div class="flex justify-between items-center mb-4">
+                <span class="text-sm text-brand-600 font-medium">Total del pedido</span>
+                <span id="cart-total" class="text-xl font-bold text-brand-900">$0</span>
+            </div>
+            <button id="btn-whatsapp" class="w-full bg-green-500 hover:bg-green-600 active:scale-[0.98] text-white py-3.5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 transition-all shadow-md">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                Enviar pedido por WhatsApp
+            </button>
+        </div>
+    </aside>
+
+    <!-- ============================= -->
+    <!-- TOAST DE CONFIRMACIÓN          -->
+    <!-- ============================= -->
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-brand-900 text-white px-6 py-3 rounded-xl text-sm font-medium shadow-xl z-[90] transition-all duration-300 opacity-0 translate-y-4 pointer-events-none border border-brand-800">
+        Producto agregado ✓
+    </div>
+
+    <!-- ============================= -->
+    <!-- BOTÓN FLOTANTE WHATSAPP       -->
+    <!-- ============================= -->
+    <a href="https://wa.me/5491131588194" target="_blank" rel="noopener noreferrer"
+       class="fixed bottom-6 right-6 z-[55] bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-all"
+       aria-label="Contactar por WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
+    <!-- ============================= -->
+    <!-- BOTÓN VOLVER ARRIBA           -->
+    <!-- ============================= -->
+    <button id="btn-scroll-top" aria-label="Volver arriba"
+        class="fixed bottom-6 right-24 z-[55] bg-brand-900/80 hover:bg-brand-900 text-white w-11 h-11 rounded-full shadow-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-all opacity-0 pointer-events-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/>
+        </svg>
+    </button>
+
+    <!-- ============================= -->
+    <!-- BANNER NOSOTRAS               -->
+    <!-- ============================= -->
+    <section id="nosotras" class="relative overflow-hidden mt-16">
+        <div class="absolute inset-0 bg-gradient-to-br from-brand-200/40 via-warm-light/30 to-rose-light/40"></div>
+        <div class="relative max-w-4xl mx-auto px-4 sm:px-6 py-16 sm:py-20 text-center">
+            <span class="inline-block w-12 h-0.5 bg-warm mb-6 rounded-full"></span>
+            <h2 class="text-3xl sm:text-4xl font-display font-bold text-brand-900 mb-4">Sobre nosotras</h2>
+            <p class="text-brand-600 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
+                Somos de <strong>Marcos Paz, Buenos Aires</strong>. En Mimosos Kids elegimos cada prenda con dedicación para que los más pequeños estén cómodos y con estilo. Nuestra tienda funciona 100% por WhatsApp: elegí, consultá, y coordinamos todo de forma personalizada.
+            </p>
+            <a href="https://wa.me/5491131588194" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 mt-8 bg-brand-900 text-white px-7 py-3 rounded-xl text-sm font-semibold hover:bg-brand-800 active:scale-95 transition-all shadow-md">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Escribinos
+            </a>
+        </div>
+    </section>
+
+    <!-- ============================= -->
+    <!-- PREGUNTAS FRECUENTES          -->
+    <!-- ============================= -->
+    <section id="faq" class="max-w-3xl mx-auto px-4 sm:px-6 py-16 mt-4">
+        <div class="text-center mb-10">
+            <span class="inline-block w-12 h-0.5 bg-warm mb-4 rounded-full"></span>
+            <h2 class="text-3xl sm:text-4xl font-display font-bold text-brand-900">Preguntas frecuentes</h2>
+        </div>
+        <div class="space-y-3" id="faq-accordion">
+            <!-- Pregunta 1 -->
+            <details class="group bg-white rounded-xl shadow-sm border border-brand-100 overflow-hidden">
+                <summary class="flex items-center justify-between cursor-pointer px-5 py-4 text-sm font-semibold text-brand-900 hover:bg-brand-50 transition">
+                    ¿Cómo compro un producto?
+                    <svg class="h-5 w-5 text-brand-400 transition-transform group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-5 pb-4 text-sm text-gray-600 leading-relaxed">
+                    Elegí los productos que te gusten, agregalos al carrito y cuando estés lista tocá <strong>"Enviar pedido por WhatsApp"</strong>. Se abre un chat directo con nosotras donde coordinamos el pago y el envío.
+                </div>
+            </details>
+            <!-- Pregunta 2 -->
+            <details class="group bg-white rounded-xl shadow-sm border border-brand-100 overflow-hidden">
+                <summary class="flex items-center justify-between cursor-pointer px-5 py-4 text-sm font-semibold text-brand-900 hover:bg-brand-50 transition">
+                    ¿Cómo se reserva un producto?
+                    <svg class="h-5 w-5 text-brand-400 transition-transform group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-5 pb-4 text-sm text-gray-600 leading-relaxed">
+                    El producto se reserva una vez que se abona la <strong>seña</strong>. Hasta ese momento, sigue disponible para otros compradores. El primero en señar se lleva el producto.
+                </div>
+            </details>
+            <!-- Pregunta 3 -->
+            <details class="group bg-white rounded-xl shadow-sm border border-brand-100 overflow-hidden">
+                <summary class="flex items-center justify-between cursor-pointer px-5 py-4 text-sm font-semibold text-brand-900 hover:bg-brand-50 transition">
+                    ¿Cuándo se descuenta el stock?
+                    <svg class="h-5 w-5 text-brand-400 transition-transform group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-5 pb-4 text-sm text-gray-600 leading-relaxed">
+                    El stock se descuenta recién cuando validamos el pago de la seña. Si ves un producto disponible, ¡apurate a señarlo porque es único!
+                </div>
+            </details>
+            <!-- Pregunta 4 -->
+            <details class="group bg-white rounded-xl shadow-sm border border-brand-100 overflow-hidden">
+                <summary class="flex items-center justify-between cursor-pointer px-5 py-4 text-sm font-semibold text-brand-900 hover:bg-brand-50 transition">
+                    ¿Hacen envíos?
+                    <svg class="h-5 w-5 text-brand-400 transition-transform group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-5 pb-4 text-sm text-gray-600 leading-relaxed">
+                    Somos de <strong>Marcos Paz, Buenos Aires</strong>. Coordinamos entregas locales y envíos por correo. Consultanos por WhatsApp para más detalles.
+                </div>
+            </details>
+            <!-- Pregunta 5 -->
+            <details class="group bg-white rounded-xl shadow-sm border border-brand-100 overflow-hidden">
+                <summary class="flex items-center justify-between cursor-pointer px-5 py-4 text-sm font-semibold text-brand-900 hover:bg-brand-50 transition">
+                    ¿Qué medios de pago aceptan?
+                    <svg class="h-5 w-5 text-brand-400 transition-transform group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-5 pb-4 text-sm text-gray-600 leading-relaxed">
+                    Aceptamos transferencia bancaria y efectivo. Todos los detalles se coordinan por WhatsApp al momento de tu compra.
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <!-- ============================= -->
+    <!-- FOOTER                        -->
+    <!-- ============================= -->
+    <footer class="bg-brand-900 text-brand-300 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-10 text-sm">
+                <!-- Col 1: Marca -->
+                <div>
+                    <h3 class="text-white text-2xl font-display font-bold mb-3">Mimosos <span class="text-warm-light">Kids</span></h3>
+                    <p class="text-brand-400 leading-relaxed">Ropa cómoda y con estilo para los más pequeños. Cada prenda elegida con amor desde Marcos Paz.</p>
+                </div>
+                <!-- Col 2: Info -->
+                <div>
+                    <h4 class="text-white font-semibold mb-3">Información</h4>
+                    <ul class="space-y-2.5 text-brand-400">
+                        <li class="flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-warm-light flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            Marcos Paz, Buenos Aires
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-warm-light flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                            Ventas por WhatsApp
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-warm-light flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+                            Transferencia / Efectivo
+                        </li>
+                    </ul>
+                </div>
+                <!-- Col 3: Links -->
+                <div>
+                    <h4 class="text-white font-semibold mb-3">Navegación</h4>
+                    <ul class="space-y-2.5 text-brand-400">
+                        <li><a href="#" class="hover:text-warm-light transition">Inicio</a></li>
+                        <li><a href="#nosotras" class="hover:text-warm-light transition">Sobre nosotras</a></li>
+                        <li><a href="#faq" class="hover:text-warm-light transition">Preguntas frecuentes</a></li>
+                        <li><a href="https://wa.me/5491131588194" target="_blank" rel="noopener noreferrer" class="hover:text-warm-light transition">Contacto por WhatsApp</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-brand-800/50 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-brand-500">
+                <span>© 2026 Mimosos Kids — Hecho con ♡</span>
+                <span class="mt-2 sm:mt-0">Marcos Paz, Buenos Aires</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================= -->
+    <!-- JAVASCRIPT                    -->
+    <!-- ============================= -->
+    <script>
+    (() => {
+        "use strict";
+
+        // ─────────────────────────────────────────────
+        // 🔧 CONFIGURACIÓN — Modificá estos valores
+        // ─────────────────────────────────────────────
+
+        // 👉 URL de tu Google Apps Script que devuelve los productos en JSON
+        const API_URL = "https://script.google.com/macros/s/AKfycbwcSvPZDM0JkoDXqbFwAu-J6aHbJa_GT6RtmR8aQKDeOdzFX42hjwAT7Lbiv_trV_oi/exec";
+
+        // 👉 Número de WhatsApp CON código de país, sin espacios ni signos
+        //    Ejemplo Argentina: 5491131588194  (54 = país, 9 = celular, 11 = área, número)
+        const WHATSAPP_NUMBER = "5491131588194";
+
+        // 👉 Tiempo en minutos que los productos se guardan en caché local.
+        //    Mientras no expire, la tienda carga AL INSTANTE sin llamar a la API.
+        //    Pasado este tiempo, refresca datos de la API en segundo plano.
+        const CACHE_TTL_MINUTOS = 15;
+
+        // ─────────────────────────────────────────────
+        // ESTADO
+        // ─────────────────────────────────────────────
+        let productosCache = [];  // Productos descargados de la API
+        let carrito = JSON.parse(localStorage.getItem("carrito")) || []; // { id, nombre, talle, precio, cantidad, imagen }
+
+        // Paginación: cuántos productos mostrar por tanda
+        const PRODUCTOS_POR_PAGINA = 20;
+        let productosVisibles = PRODUCTOS_POR_PAGINA;
+        let productosFiltrados = []; // últimos resultados filtrados
+
+        // ─────────────────────────────────────────────
+        // REFERENCIAS AL DOM
+        // ─────────────────────────────────────────────
+        const $grid        = document.getElementById("productos-grid");
+        const $loader      = document.getElementById("loader");
+        const $errorMsg    = document.getElementById("error-msg");
+        const $cartCount   = document.getElementById("cart-count");
+        const $filtros     = document.getElementById("filtros-section");
+        const $buscador    = document.getElementById("buscador");
+        const $buscadorClear = document.getElementById("buscador-clear");
+        const $resultCount = document.getElementById("resultado-count");
+
+        // Modal detalle
+        const $modal       = document.getElementById("modal-detalle");
+        const $modalOverlay= document.getElementById("modal-overlay");
+        const $modalClose  = document.getElementById("modal-close");
+        const $modalImg    = document.getElementById("modal-img");
+        const $modalNombre = document.getElementById("modal-nombre");
+        const $modalSeccion= document.getElementById("modal-seccion");
+        const $modalTalle  = document.getElementById("modal-talle");
+        const $modalDesc   = document.getElementById("modal-desc");
+        const $modalPrecio = document.getElementById("modal-precio");
+        const $modalAddCart= document.getElementById("modal-add-cart");
+
+        // Paginación
+        const $loadMoreWrap = document.getElementById("load-more-wrap");
+        const $btnLoadMore  = document.getElementById("btn-load-more");
+        const $loadMoreCount= document.getElementById("load-more-count");
+
+        // Panel del carrito
+        const $cartOverlay = document.getElementById("cart-overlay");
+        const $cartPanel   = document.getElementById("cart-panel");
+        const $cartEmpty   = document.getElementById("cart-empty");
+        const $cartItems   = document.getElementById("cart-items");
+        const $cartFooter  = document.getElementById("cart-footer");
+        const $cartTotal   = document.getElementById("cart-total");
+        const $btnOpenCart  = document.getElementById("btn-open-cart");
+        const $btnCloseCart = document.getElementById("btn-close-cart");
+        const $btnWhatsapp = document.getElementById("btn-whatsapp");
+
+        // Toast
+        const $toast       = document.getElementById("toast");
+
+        // ─────────────────────────────────────────────
+        // UTILIDADES
+        // ─────────────────────────────────────────────
+        /** Escapa caracteres HTML para prevenir inyecciones XSS */
+        function esc(str) {
+            const d = document.createElement("div");
+            d.textContent = str;
+            return d.innerHTML;
+        }
+
+        function formatoPrecio(n) {
+            return "$" + Number(n).toLocaleString("es-AR");
+        }
+
+        function guardarCarrito() {
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+        }
+
+        function totalCarrito() {
+            return carrito.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
+        }
+
+        function cantidadTotalCarrito() {
+            return carrito.reduce((sum, item) => sum + item.cantidad, 0);
+        }
+
+        function mostrarToast(msg) {
+            $toast.textContent = msg;
+            $toast.classList.remove("opacity-0", "translate-y-4");
+            $toast.classList.add("opacity-100", "translate-y-0");
+            setTimeout(() => {
+                $toast.classList.add("opacity-0", "translate-y-4");
+                $toast.classList.remove("opacity-100", "translate-y-0");
+            }, 2000);
+        }
+
+        // ─────────────────────────────────────────────
+        // CACHÉ LOCAL DE PRODUCTOS
+        // ─────────────────────────────────────────────
+        // Guarda los productos en localStorage con un timestamp.
+        // Si el caché tiene menos de CACHE_TTL_MINUTOS, se usa directo (carga instantánea).
+        // Si expiró, se muestra lo cacheado y se refresca de la API en segundo plano.
+
+        function obtenerCacheProductos() {
+            try {
+                const raw = localStorage.getItem("productos_cache");
+                if (!raw) return null;
+                const cache = JSON.parse(raw);
+                if (!cache.ts || !Array.isArray(cache.data)) return null;
+                return cache;
+            } catch { return null; }
+        }
+
+        function guardarCacheProductos(data) {
+            localStorage.setItem("productos_cache", JSON.stringify({
+                ts: Date.now(),
+                data: data
+            }));
+        }
+
+        function cacheExpirado(cache) {
+            return (Date.now() - cache.ts) > CACHE_TTL_MINUTOS * 60 * 1000;
+        }
+
+        // ─────────────────────────────────────────────
+        // CARGAR PRODUCTOS (con caché inteligente)
+        // ─────────────────────────────────────────────
+        async function cargarProductos() {
+            const cache = obtenerCacheProductos();
+
+            // Si hay caché válido → mostrar al instante
+            if (cache && cache.data.length > 0) {
+                productosCache = cache.data;
+                generarFiltros(productosCache);
+                aplicarFiltros();
+
+                // Si expiró, refrescar en segundo plano (el usuario ya ve productos)
+                if (cacheExpirado(cache)) {
+                    fetchProductosDesdeAPI(true); // silencioso
+                }
+                return;
+            }
+
+            // Sin caché → mostrar loader y hacer fetch normal
+            fetchProductosDesdeAPI(false);
+        }
+
+        async function fetchProductosDesdeAPI(silencioso) {
+            if (!silencioso) {
+                $loader.classList.remove("hidden");
+                $errorMsg.classList.add("hidden");
+                $grid.classList.add("hidden");
+            }
+
+            try {
+                const respuesta = await fetch(API_URL);
+                if (!respuesta.ok) throw new Error("HTTP " + respuesta.status);
+                const json = await respuesta.json();
+
+                if (json.status === "success" && Array.isArray(json.data)) {
+                    productosCache = json.data;
+                    guardarCacheProductos(json.data);
+                    generarFiltros(productosCache);
+                    aplicarFiltros();
+                } else {
+                    throw new Error(json.error || "Respuesta inesperada");
+                }
+            } catch (err) {
+                console.error("Error cargando productos:", err);
+                if (!silencioso) {
+                    $loader.classList.add("hidden");
+                    $errorMsg.classList.remove("hidden");
+                }
+            }
+        }
+
+        // ─────────────────────────────────────────────
+        // 🔍 BUSCADOR CON DEBOUNCE
+        // ─────────────────────────────────────────────
+        let debounceTimer = null;
+
+        $buscador.addEventListener("input", () => {
+            // Mostrar / ocultar el botón X
+            $buscadorClear.classList.toggle("hidden", $buscador.value.length === 0);
+            // Debounce de 250ms para no filtrar en cada tecla
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(aplicarFiltros, 250);
+        });
+
+        $buscadorClear.addEventListener("click", () => {
+            $buscador.value = "";
+            $buscadorClear.classList.add("hidden");
+            aplicarFiltros();
+            $buscador.focus();
+        });
+
+        // ─────────────────────────────────────────────
+        // FILTRADO UNIFICADO (búsqueda + sección)
+        // ─────────────────────────────────────────────
+        function obtenerSeccionActiva() {
+            const activo = $filtros.querySelector(".filter-btn.active-filter");
+            return activo ? activo.dataset.filter : "todos";
+        }
+
+        /** Normaliza texto para búsqueda: minúsculas, sin tildes */
+        function normalizar(texto) {
+            return String(texto).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        }
+
+        function aplicarFiltros() {
+            const seccion = obtenerSeccionActiva();
+            const query = normalizar($buscador.value.trim());
+
+            let resultado = productosCache;
+
+            // Filtro por sección
+            if (seccion !== "todos") {
+                resultado = resultado.filter(p => p.Seccion === seccion);
+            }
+
+            // Filtro por texto de búsqueda (busca en múltiples campos)
+            if (query.length > 0) {
+                const palabras = query.split(/\s+/);
+                resultado = resultado.filter(p => {
+                    const texto = normalizar(
+                        [p.Nombre_Articulo, p.Seccion, p.Categoria, p.Talle, p.Descripcion].join(" ")
+                    );
+                    // Todas las palabras deben coincidir (búsqueda AND)
+                    return palabras.every(pal => texto.includes(pal));
+                });
+            }
+
+            // Reset paginación al cambiar filtros
+            productosVisibles = PRODUCTOS_POR_PAGINA;
+            productosFiltrados = resultado;
+            renderizarProductos(resultado);
+
+            // Mostrar contador de resultados
+            const conStock = resultado.filter(p => p.Stock_Disponible > 0).length;
+            if (query.length > 0 || seccion !== "todos") {
+                $resultCount.textContent = `${conStock} producto${conStock !== 1 ? "s" : ""} encontrado${conStock !== 1 ? "s" : ""}`;
+                $resultCount.classList.remove("hidden");
+            } else {
+                $resultCount.classList.add("hidden");
+            }
+        }
+
+        // ─────────────────────────────────────────────
+        // FILTROS POR SECCIÓN
+        // ─────────────────────────────────────────────
+        function generarFiltros(productos) {
+            const secciones = [...new Set(productos.filter(p => p.Stock_Disponible > 0).map(p => p.Seccion))].sort();
+            // Limpiar filtros dinámicos previos (excepto "Todos")
+            $filtros.querySelectorAll("[data-filter]:not([data-filter='todos'])").forEach(b => b.remove());
+            secciones.forEach(sec => {
+                const btn = document.createElement("button");
+                btn.className = "filter-btn px-4 py-1.5 rounded-full text-sm font-medium border transition-all";
+                btn.dataset.filter = sec;
+                btn.textContent = sec;
+                $filtros.appendChild(btn);
+            });
+            aplicarEstiloFiltros();
+        }
+
+        function aplicarEstiloFiltros() {
+            $filtros.querySelectorAll(".filter-btn").forEach(btn => {
+                btn.classList.remove("bg-brand-900", "text-white", "border-brand-900", "shadow-sm", "bg-white", "text-brand-600", "border-brand-200", "hover:bg-brand-100", "hover:border-brand-300");
+                if (btn.classList.contains("active-filter")) {
+                    btn.classList.add("bg-brand-900", "text-white", "border-brand-900", "shadow-sm");
+                } else {
+                    btn.classList.add("bg-white", "text-brand-600", "border-brand-200", "hover:bg-brand-100", "hover:border-brand-300");
+                }
+            });
+        }
+
+        $filtros.addEventListener("click", (e) => {
+            const btn = e.target.closest(".filter-btn");
+            if (!btn) return;
+            $filtros.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active-filter"));
+            btn.classList.add("active-filter");
+            aplicarEstiloFiltros();
+            aplicarFiltros(); // Usa el sistema unificado
+        });
+
+        // ─────────────────────────────────────────────
+        // RENDERIZAR GRILLA DE PRODUCTOS
+        // ─────────────────────────────────────────────
+        function renderizarProductos(productos) {
+            $grid.innerHTML = "";
+
+            const conStock = productos.filter(p => p.Stock_Disponible > 0);
+
+            if (conStock.length === 0) {
+                $grid.innerHTML = '<div class="col-span-full flex flex-col items-center justify-center py-16 text-center"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-12 w-12 text-brand-200 mb-3\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-width=\"1.5\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z\"/></svg><p class=\"text-brand-400 text-sm\">No hay productos disponibles en esta categoría.</p></div>';
+                $loadMoreWrap.classList.add("hidden");
+            }
+
+            // Paginación: mostrar solo los primeros N
+            const visibles = conStock.slice(0, productosVisibles);
+            const hayMas = conStock.length > productosVisibles;
+
+            if (hayMas) {
+                $loadMoreWrap.classList.remove("hidden");
+                $loadMoreCount.textContent = `Mostrando ${visibles.length} de ${conStock.length} productos`;
+            } else {
+                $loadMoreWrap.classList.add("hidden");
+            }
+
+            visibles.forEach((p, idx) => {
+                const card = document.createElement("div");
+                card.className = "bg-white rounded-2xl overflow-hidden group animate-fade-up border border-brand-100/80 hover:border-brand-200 hover:shadow-xl transition-all duration-300";
+                card.style.animationDelay = `${idx * 40}ms`;
+                card.innerHTML = `
+                    <div class="aspect-[3/4] bg-brand-100 overflow-hidden cursor-pointer relative" data-id="${esc(p.ID_Producto)}">
+                        <img src="${esc(p.Imagen)}" alt="${esc(p.Nombre_Articulo)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="absolute top-2.5 left-2.5">
+                            <span class="inline-block px-2.5 py-1 bg-white/90 backdrop-blur-sm text-[10px] sm:text-xs font-semibold text-brand-700 rounded-lg shadow-sm">${esc(p.Seccion)}</span>
+                        </div>
+                    </div>
+                    <div class="p-3.5 sm:p-4">
+                        <p class="text-[10px] sm:text-xs text-brand-400 font-medium uppercase tracking-wider">${esc(p.Categoria)} · Talle ${esc(String(p.Talle))}</p>
+                        <h3 class="text-sm sm:text-base font-display font-bold text-brand-900 mt-1 leading-snug line-clamp-2">${esc(p.Nombre_Articulo)}</h3>
+                        <div class="mt-3 flex justify-between items-center">
+                            <span class="text-lg sm:text-xl font-display font-bold text-brand-900">${formatoPrecio(p.Precio)}</span>
+                            <button class="btn-add-cart bg-brand-900 text-white text-xs sm:text-sm px-3.5 py-2 rounded-xl font-medium hover:bg-brand-800 active:scale-95 transition-all shadow-sm" data-id="${esc(p.ID_Producto)}">
+                                Agregar
+                            </button>
+                        </div>
+                    </div>
+                `;
+                $grid.appendChild(card);
+            });
+
+            $loader.classList.add("hidden");
+            $grid.classList.remove("hidden");
+        }
+
+        // ─────────────────────────────────────────────
+        // EVENTOS DE GRILLA: click en imagen → modal, click en agregar → carrito
+        // ─────────────────────────────────────────────
+        $grid.addEventListener("click", (e) => {
+            // Botón agregar al carrito
+            const btnAdd = e.target.closest(".btn-add-cart");
+            if (btnAdd) {
+                agregarAlCarrito(btnAdd.dataset.id);
+                return;
+            }
+            // Click en la imagen → abrir modal de detalle
+            const imgWrap = e.target.closest("[data-id]");
+            if (imgWrap && !imgWrap.classList.contains("btn-add-cart")) {
+                abrirModalDetalle(imgWrap.dataset.id);
+            }
+        });
+
+        // ─────────────────────────────────────────────
+        // MODAL DE DETALLE
+        // ─────────────────────────────────────────────
+        let productoModalActual = null;
+
+        function abrirModalDetalle(id) {
+            const p = productosCache.find(x => x.ID_Producto === id);
+            if (!p) return;
+            productoModalActual = p;
+
+            $modalImg.src = p.Imagen;
+            $modalImg.alt = p.Nombre_Articulo;
+            $modalNombre.textContent = p.Nombre_Articulo;
+            $modalSeccion.textContent = p.Seccion + " · " + p.Categoria;
+            $modalTalle.textContent = "Talle: " + p.Talle;
+            $modalDesc.textContent = p.Descripcion || "Sin descripción disponible.";
+            $modalPrecio.textContent = formatoPrecio(p.Precio);
+
+            $modal.classList.remove("hidden");
+            document.body.style.overflow = "hidden";
+        }
+
+        function cerrarModalDetalle() {
+            $modal.classList.add("hidden");
+            document.body.style.overflow = "";
+            productoModalActual = null;
+        }
+
+        $modalClose.addEventListener("click", cerrarModalDetalle);
+        $modalOverlay.addEventListener("click", cerrarModalDetalle);
+
+        $modalAddCart.addEventListener("click", () => {
+            if (productoModalActual) {
+                agregarAlCarrito(productoModalActual.ID_Producto);
+                cerrarModalDetalle();
+            }
+        });
+
+        // ─────────────────────────────────────────────
+        // LÓGICA DEL CARRITO
+        // ─────────────────────────────────────────────
+        function agregarAlCarrito(id) {
+            const p = productosCache.find(x => x.ID_Producto === id);
+            if (!p) return;
+
+            const existente = carrito.find(item => item.id === id);
+            if (existente) {
+                // No superar el stock disponible
+                if (existente.cantidad < p.Stock_Disponible) {
+                    existente.cantidad++;
+                } else {
+                    mostrarToast("Stock máximo alcanzado");
+                    return;
+                }
+            } else {
+                carrito.push({
+                    id: p.ID_Producto,
+                    nombre: p.Nombre_Articulo,
+                    talle: p.Talle,
+                    precio: p.Precio,
+                    cantidad: 1,
+                    imagen: p.Imagen
+                });
+            }
+
+            guardarCarrito();
+            actualizarUI();
+            mostrarToast("Producto agregado ✓");
+        }
+
+        function cambiarCantidad(id, delta) {
+            const item = carrito.find(x => x.id === id);
+            if (!item) return;
+
+            const producto = productosCache.find(x => x.ID_Producto === id);
+            const maxStock = producto ? producto.Stock_Disponible : Infinity;
+
+            item.cantidad += delta;
+            if (item.cantidad <= 0) {
+                carrito = carrito.filter(x => x.id !== id);
+            } else if (item.cantidad > maxStock) {
+                item.cantidad = maxStock;
+                mostrarToast("Stock máximo alcanzado");
+            }
+
+            guardarCarrito();
+            actualizarUI();
+            renderizarCarrito();
+        }
+
+        function eliminarDelCarrito(id) {
+            carrito = carrito.filter(x => x.id !== id);
+            guardarCarrito();
+            actualizarUI();
+            renderizarCarrito();
+        }
+
+        function actualizarUI() {
+            const total = cantidadTotalCarrito();
+            $cartCount.textContent = total;
+            // Pequeña animación del badge
+            $cartCount.classList.add("scale-125");
+            setTimeout(() => $cartCount.classList.remove("scale-125"), 200);
+        }
+
+        // ─────────────────────────────────────────────
+        // RENDER DEL PANEL DEL CARRITO
+        // ─────────────────────────────────────────────
+        function renderizarCarrito() {
+            if (carrito.length === 0) {
+                $cartEmpty.classList.remove("hidden");
+                $cartItems.classList.add("hidden");
+                $cartFooter.classList.add("hidden");
+                return;
+            }
+
+            $cartEmpty.classList.add("hidden");
+            $cartItems.classList.remove("hidden");
+            $cartFooter.classList.remove("hidden");
+
+            $cartItems.innerHTML = "";
+
+            carrito.forEach(item => {
+                const row = document.createElement("div");
+                row.className = "flex gap-3 bg-brand-50/70 rounded-xl p-3 border border-brand-100";
+                row.innerHTML = `
+                    <div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-brand-100">
+                        <img src="${esc(item.imagen)}" alt="${esc(item.nombre)}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <h4 class="text-sm font-semibold text-brand-900 truncate">${esc(item.nombre)}</h4>
+                        <p class="text-xs text-brand-500">Talle: ${esc(String(item.talle))}</p>
+                        <p class="text-sm font-bold text-brand-900 mt-1">${formatoPrecio(item.precio)}</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-between">
+                        <button class="cart-remove text-brand-400 hover:text-red-500 transition" data-id="${esc(item.id)}" aria-label="Eliminar">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                            </svg>
+                        </button>
+                        <div class="flex items-center gap-1.5">
+                            <button class="cart-minus w-6 h-6 rounded-full bg-brand-200 text-brand-800 flex items-center justify-center text-sm font-bold hover:bg-brand-300 transition" data-id="${esc(item.id)}">−</button>
+                            <span class="text-sm font-semibold w-5 text-center">${item.cantidad}</span>
+                            <button class="cart-plus w-6 h-6 rounded-full bg-brand-200 text-brand-800 flex items-center justify-center text-sm font-bold hover:bg-brand-300 transition" data-id="${esc(item.id)}">+</button>
+                        </div>
+                    </div>
+                `;
+                $cartItems.appendChild(row);
+            });
+
+            $cartTotal.textContent = formatoPrecio(totalCarrito());
+        }
+
+        // Delegación de eventos en el panel del carrito
+        $cartItems.addEventListener("click", (e) => {
+            const id = e.target.closest("[data-id]")?.dataset.id;
+            if (!id) return;
+            if (e.target.closest(".cart-minus")) cambiarCantidad(id, -1);
+            else if (e.target.closest(".cart-plus")) cambiarCantidad(id, +1);
+            else if (e.target.closest(".cart-remove")) eliminarDelCarrito(id);
+        });
+
+        // ─────────────────────────────────────────────
+        // ABRIR / CERRAR PANEL DEL CARRITO
+        // ─────────────────────────────────────────────
+        function abrirCarrito() {
+            renderizarCarrito();
+            $cartOverlay.classList.remove("hidden");
+            requestAnimationFrame(() => {
+                $cartPanel.classList.remove("translate-x-full");
+            });
+            document.body.style.overflow = "hidden";
+        }
+
+        function cerrarCarrito() {
+            $cartPanel.classList.add("translate-x-full");
+            $cartOverlay.classList.add("hidden");
+            document.body.style.overflow = "";
+        }
+
+        $btnOpenCart.addEventListener("click", abrirCarrito);
+        $btnCloseCart.addEventListener("click", cerrarCarrito);
+        $cartOverlay.addEventListener("click", cerrarCarrito);
+
+        // ─────────────────────────────────────────────
+        // CHECKOUT POR WHATSAPP
+        // ─────────────────────────────────────────────
+        $btnWhatsapp.addEventListener("click", () => {
+            if (carrito.length === 0) return;
+
+            // Armamos un mensaje prolijo con el detalle del pedido
+            const lineas = [];
+            lineas.push("Hola! Quiero hacer el siguiente pedido:");
+            lineas.push("");
+            carrito.forEach((item, i) => {
+                lineas.push(`${i + 1}. *${item.nombre}* - Talle ${item.talle}`);
+                lineas.push(`   ${item.cantidad}x ${formatoPrecio(item.precio)} = ${formatoPrecio(item.precio * item.cantidad)}`);
+            });
+            lineas.push("");
+            lineas.push(`*Total: ${formatoPrecio(totalCarrito())}*`);
+            lineas.push("");
+            lineas.push("Gracias!");
+
+            const mensaje = lineas.join("\n");
+            // 👉 Se usa el número configurado arriba (WHATSAPP_NUMBER)
+            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensaje)}`;
+            window.open(url, "_blank");
+        });
+
+        // ─────────────────────────────────────────────
+        // PAGINACIÓN: BOTÓN "MOSTRAR MÁS"
+        // ─────────────────────────────────────────────
+        $btnLoadMore.addEventListener("click", () => {
+            productosVisibles += PRODUCTOS_POR_PAGINA;
+            renderizarProductos(productosFiltrados);
+        });
+
+        // ─────────────────────────────────────────────
+        // CERRAR MODALES CON TECLA ESC
+        // ─────────────────────────────────────────────
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                cerrarModalDetalle();
+                cerrarCarrito();
+            }
+        });
+
+        // ─────────────────────────────────────────────
+        // BOTÓN VOLVER ARRIBA
+        // ─────────────────────────────────────────────
+        const $scrollTop = document.getElementById("btn-scroll-top");
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 400) {
+                $scrollTop.classList.remove("opacity-0", "pointer-events-none");
+                $scrollTop.classList.add("opacity-100");
+            } else {
+                $scrollTop.classList.add("opacity-0", "pointer-events-none");
+                $scrollTop.classList.remove("opacity-100");
+            }
+        }, { passive: true });
+        $scrollTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+        // ─────────────────────────────────────────────
+        // INICIALIZACIÓN
+        // ─────────────────────────────────────────────
+        actualizarUI();
+        cargarProductos();
+    })();
+    </script>
+</body>
+</html>
