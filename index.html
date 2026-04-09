@@ -413,7 +413,7 @@
         // 👉 Tiempo en minutos que los productos se guardan en caché local.
         //    Mientras no expire, la tienda carga AL INSTANTE sin llamar a la API.
         //    Pasado este tiempo, refresca datos de la API en segundo plano.
-        const CACHE_TTL_MINUTOS = 15;
+        const CACHE_TTL_MINUTOS = 3;
 
         // ─────────────────────────────────────────────
         // ESTADO
@@ -539,16 +539,15 @@
         async function cargarProductos() {
             const cache = obtenerCacheProductos();
 
-            // Si hay caché válido → mostrar al instante
+            // Si hay caché → mostrar al instante (carga instantánea)
             if (cache && cache.data.length > 0) {
                 productosCache = cache.data;
                 generarFiltros(productosCache);
                 aplicarFiltros();
 
-                // Si expiró, refrescar en segundo plano (el usuario ya ve productos)
-                if (cacheExpirado(cache)) {
-                    fetchProductosDesdeAPI(true); // silencioso
-                }
+                // SIEMPRE refrescar en segundo plano para detectar productos nuevos.
+                // Esto asegura que productos agregados desde AppSheet aparezcan rápido.
+                fetchProductosDesdeAPI(true); // silencioso
                 return;
             }
 

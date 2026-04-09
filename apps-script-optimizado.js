@@ -241,6 +241,12 @@ function sincronizarProductos() {
   var colImagen = headers.indexOf("Imagen");
   if (colImagen === -1) return;
 
+  // Detectar si hay filas nuevas comparando con la cantidad cacheada
+  var cache = CacheService.getScriptCache();
+  var cantidadAnterior = cache.get("productos_count");
+  var cantidadActual = data.length - 1; // sin header
+  var hayFilasNuevas = (cantidadAnterior !== null && cantidadActual !== parseInt(cantidadAnterior));
+
   var huboCambios = false;
 
   for (var i = 1; i < data.length; i++) {
@@ -268,10 +274,13 @@ function sincronizarProductos() {
     }
   }
 
-  // Si hubo conversiones nuevas, limpiar caché para que la tienda se actualice
-  if (huboCambios) {
+  // Guardar cantidad actual para detectar nuevas filas en la próxima ejecución
+  cache.put("productos_count", String(cantidadActual), 86400); // 24hs
+
+  // Limpiar caché si hubo conversiones de imágenes O si se detectaron filas nuevas
+  if (huboCambios || hayFilasNuevas) {
     limpiarCache();
-    Logger.log("✅ Imágenes convertidas y caché limpiado.");
+    Logger.log("✅ Caché limpiado. Cambios de imágenes: " + huboCambios + ", Filas nuevas: " + hayFilasNuevas);
   }
 }
 
